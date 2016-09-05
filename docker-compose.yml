@@ -14,3 +14,12 @@ api:
     - ./examples/final-api/config:/home/travis/final-api/config
     - ./examples/final-api/bin:/home/travis/final-api/bin
     # - ./your custom path to final api project:/home/travis/final-api
+
+atom:
+  image: final-ci/atom-ui:latest
+  links:
+    - api:api
+  ports:
+    - 8080:8080
+  volumes:
+    - ./examples/atom-ui/config/local.config.json:/home/travis/atom-ui/config/environments/local.config.json

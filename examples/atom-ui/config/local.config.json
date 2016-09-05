@@ -1,0 +1,4 @@
+{
+  "ddtfBaseUrl": "http://localhost:55555/ddtf/",
+  "ddtfRawLogUrl": "http://travis-logs-container/raw/"
+}
