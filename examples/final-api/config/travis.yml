@@ -1,0 +1,52 @@
+defaults: &defaults
+  log_level: :debug
+  origin_whitelist: '*'
+  allowed_origin: '*'
+  log_file_storage_path: /var/log/travis-logs-storage
+  tsd_utils:
+    clusters:
+      cluster-name-1: cluster-endpoint-1
+      cluster-name-2: cluster-endpoint-2
+    executable: TsdValidatorBinaryPath
+    executable_params: '-param -s'
+  ddtf:
+    command_node_queue: commands.windows.ussnode
+    node_queue: builds.windows.ussnode
+    cancel_command_prefix: cmd.
+    email_domain: mail.com
+  api:
+    tests:
+      default_limit: 20
+      max_limit: 200
+      default_offset: 0
+  test_results:
+    results_path: '/data/final-ci/test-results'
+
+production:
+  <<: *defaults
+
+  sentry_dsn: http://example.com/...
+  database:
+    host: localhost
+    database: travis_production
+    username: travis_production_user
+  amqp:
+    host: localhost
+    port: 5672
+    username: travisci_worker
+    password: travisci_worker_password
+    vhost: travisci.production
+
+development:
+  <<: *defaults
+
+  database:
+    host: localhost
+    database: travis_development
+    username: travis_development_user
+  amqp:
+    host: localhost
+    port: 5672
+    username: travisci_worker
+    password: travisci_worker_password
+    vhost: travisci.development

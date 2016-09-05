@@ -1,0 +1,13 @@
+#!/bin/bash
+
+git config --global url."https://".insteadof git://
+
+source ~/.rvm/scripts/rvm
+
+cd ~
+
+git clone $GIT_URL $PROJECT_NAME
+
+cd $PROJECT_NAME
+
+bundle install
