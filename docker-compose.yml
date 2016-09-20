@@ -1,0 +1,16 @@
+redis:
+  image: redis:3.0.3
+  restart: always
+
+api:
+  image: final-ci/final-api:latest
+  links:
+    - redis:redis
+  environment:
+    ENV: development
+  ports:
+    - "55555:55555"
+  volumes:
+    - ./examples/final-api/config:/home/travis/final-api/config
+    - ./examples/final-api/bin:/home/travis/final-api/bin
+    # - ./your custom path to final api project:/home/travis/final-api

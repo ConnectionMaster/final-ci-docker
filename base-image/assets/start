@@ -1,0 +1,15 @@
+#!/bin/bash
+
+git config --global url."https://".insteadof git://
+
+source ~/.rvm/scripts/rvm
+
+cd ~/$PROJECT_NAME
+
+bundle install
+
+export RAILS_ENV=${RAILS_ENV:-${ENV}}
+export RACK_ENV=${RACK_ENV:-${ENV}}
+
+. config/.env
+foreman start
